@@ -279,6 +279,8 @@ export function getCtfContract(mainnetQ, wallet) {
         wallet.address,
         contractConfig.exchange
       );
+      console.log(`usdcAllowanceExchange: ${usdcAllowanceExchange}`);
+
       const conditionalTokensAllowanceExchange = await ctf.isApprovedForAll(
         wallet.address,
         contractConfig.exchange
@@ -287,6 +289,7 @@ export function getCtfContract(mainnetQ, wallet) {
       let txn;
 
       if (!usdcAllowanceCtf.gt(constants.Zero)) {
+        console.log("Processing Approve...");
         txn = await usdc.approve(
           contractConfig.conditionalTokens,
           constants.MaxUint256,
